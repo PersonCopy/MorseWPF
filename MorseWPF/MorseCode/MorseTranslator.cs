@@ -11,7 +11,7 @@ namespace MorseWPF.MorseCode
     public class MorseTranslator
     {
         // dictionary for morse code translation
-        private readonly Dictionary<string, string> morseDictionary;
+        private Dictionary<string, string> morseDictionary;
 
         // instance of singleton to avoid reading json every time
         private static MorseTranslator instance = null;
@@ -29,8 +29,10 @@ namespace MorseWPF.MorseCode
 
         private MorseTranslator()
         {
+            // current path
+
             // reads json file and inserts values into dictionary
-            using (StreamReader r = new StreamReader(@"MorseData\translation.json"))
+            using (StreamReader r = new StreamReader(@"..\..\MorseCode\MorseData\translation.json"))
             {
                 this.morseDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(r.ReadToEnd());
             }
@@ -75,7 +77,7 @@ namespace MorseWPF.MorseCode
             foreach (char s in text)
             {
                 // gets every character translated to 
-                morseReturn += GetMorseToChar(s.ToString()) + " ";
+                morseReturn += GetCharToMorse(s.ToString()) + " ";
             }
             // removes the last space character from the foreach group
             return morseReturn.Remove(morseReturn.Length - 1);

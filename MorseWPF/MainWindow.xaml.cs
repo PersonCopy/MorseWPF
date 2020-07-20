@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MorseWPF.MorseCode;
 
 namespace MorseWPF
 {
@@ -23,6 +24,11 @@ namespace MorseWPF
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void MorseTranslate_Click(object sender, RoutedEventArgs e)
+        {
+            TxtOutputBlock.Text = MorseTranslator.Instance.GetTextToMorse(MorseTextBox.Text);
         }
     }
 }
