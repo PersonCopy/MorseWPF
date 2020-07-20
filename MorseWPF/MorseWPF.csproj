@@ -70,7 +70,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\MorseLearner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\MorseTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TranslatorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -81,8 +89,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MorseCode\MorseTranslator.cs" />
+    <Compile Include="Pages\MorseLearner.xaml.cs">
+      <DependentUpon>MorseLearner.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MorseTable.xaml.cs">
       <DependentUpon>MorseTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TranslatorPage.xaml.cs">
+      <DependentUpon>TranslatorPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
