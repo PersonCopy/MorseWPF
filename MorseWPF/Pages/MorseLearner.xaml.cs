@@ -32,8 +32,8 @@ namespace MorseWPF.Pages
         {
             CurrWordPanel.Children.Clear();
             MorseWord morseWord = new MorseWord();
-
-            foreach (char c in morseWord.SelectedWord)
+            /*
+            foreach (char c in morseWord.SelectedWord.)
             {
                 Label label = new Label
                 {
@@ -41,7 +41,7 @@ namespace MorseWPF.Pages
                     FontSize = 55
                 };
                 CurrWordPanel.Children.Add(label);
-            }
+            }*/
         }
 
         private void DotBtn_Click(object sender, System.Windows.RoutedEventArgs e)
