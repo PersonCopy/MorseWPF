@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MorseCode\MorseTranslator.cs" />
+    <Compile Include="MorseCode\MorseWord.cs" />
     <Compile Include="Pages\MorseLearner.xaml.cs">
       <DependentUpon>MorseLearner.xaml</DependentUpon>
     </Compile>
@@ -127,6 +128,8 @@
   <ItemGroup>
     <None Include="MorseCode\MorseData\translation.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="MorseCode\MorseData\wordsList.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

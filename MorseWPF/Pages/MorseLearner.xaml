@@ -17,6 +17,14 @@
     </Page.Resources>
     
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <Label Content="Morse Tutor" FontSize="30"/>
+            <Separator Margin="5"/>
+        </StackPanel>
     </Grid>
 </Page>
