@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using MorseWPF.MorseCode;
 
 namespace MorseWPF.Pages
 {
@@ -24,6 +25,28 @@ namespace MorseWPF.Pages
         private MorseLearner()
         {
             InitializeComponent();
+            DisplayNewWord();
+        }
+
+        private void DisplayNewWord()
+        {
+            CurrWordPanel.Children.Clear();
+            MorseWord morseWord = new MorseWord();
+
+            foreach (char c in morseWord.SelectedWord)
+            {
+                Label label = new Label
+                {
+                    Content = c.ToString(),
+                    FontSize = 55
+                };
+                CurrWordPanel.Children.Add(label);
+            }
+        }
+
+        private void DotBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            DisplayNewWord();
         }
     }
 }

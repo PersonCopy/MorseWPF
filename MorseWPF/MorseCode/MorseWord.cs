@@ -12,10 +12,15 @@ namespace MorseWPF.MorseCode
         // static array of random words
         public static string[] RandWords = null;
 
-        // dictionary with string (the character) and
-        // a bool? (if character was spelled correctly,
-        // incorrectly or not yet spelled)
-        public Dictionary<string, bool?> SelectedWord;
+        // word that has been randomly selected
+        public LettersState[] SelectedWord;
+        private int currentIndex;
+
+        public struct LettersState
+        {
+            public string letter;
+            public int status;
+        }
 
         public MorseWord()
         {
@@ -25,16 +30,21 @@ namespace MorseWPF.MorseCode
                 InitRandWords();
             }
 
-            //initialize
-            SelectedWord = new Dictionary<string, bool?>();
+            // Initialize
+            
 
             // selects a random word from the array
             Random random = new Random();
             string word = RandWords[random.Next(RandWords.Length + 1)];
+            SelectedWord = new LettersState[word.Length];
 
             foreach (char c in word)
             {
-                SelectedWord.Add(c.ToString(), null);
+                LettersState lettersState;
+                lettersState.letter = c.ToString();
+                lettersState.status = 0;
+
+                SelectedWord.Append(lettersState);
             }
         }
 
@@ -49,6 +59,44 @@ namespace MorseWPF.MorseCode
             {
                 RandWords = r.ReadToEnd().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
             }
+        }
+
+        private bool IsMorseCorrect(string currMorse)
+        {
+            LettersState character = SelectedWord[this.currentIndex];
+            char[] charArray = currMorse.ToCharArray();
+
+            string morse = MorseTranslator.Instance.GetCharToMorse(character.letter);
+            char[] morseArray = morse.ToCharArray();
+
+            for (int i = 0; i < currMorse.Length; i++)
+            {
+                if (charArray[i] != morseArray[i])
+                {
+                    return false;
+                }
+            }
+
+
+            return true;
+        }
+
+        private bool IsMorseOver(string currMorse)
+        {
+            LettersState character = SelectedWord[this.currentIndex];
+
+            string morse = MorseTranslator.Instance.GetCharToMorse(character.letter);
+
+            if (currMorse.Length != morse.Length)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void CheckWordProgress(string currMorse)
+        {
+
         }
     }
 }
