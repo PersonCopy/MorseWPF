@@ -17,6 +17,39 @@
     </Page.Resources>
     
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <Label Content="Morse Translator" FontSize="30"/>
+            <Separator Margin="5"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button Name="ToMorseBtn" Content="To Morse" Background="Black" Margin="1" Click="ToMorseBtn_Click"/>
+                <Button Name="ToTextBtn" Content="To Text" Margin="1" Grid.Column="1" Click="ToTextBtn_Click"/>
+
+                <TextBox Name="InputBox" TextWrapping="Wrap" AcceptsReturn="True" Height="80" Grid.Row="1"/>
+                <TextBox Name="OutputBox" TextWrapping="Wrap" AcceptsReturn="True" Height="80" Grid.Row="1" Grid.Column="1"/>
+                <UniformGrid Columns="3" Grid.Row="2" Grid.ColumnSpan="2" Margin="5">
+                    <Label Content="Input" Grid.Row="1" HorizontalAlignment="Left" FontSize="20"/>
+                    <Button Name="TranslateBtn" Width="180" Height="40" Content="Translate" FontSize="25" Click="TranslateBtn_Click"/>
+                    <Label Content="Output" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" FontSize="20"/>
+                </UniformGrid>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Page>

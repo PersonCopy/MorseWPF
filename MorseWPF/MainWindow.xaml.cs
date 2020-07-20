@@ -34,12 +34,12 @@ namespace MorseWPF
 
         private void DisplayLearnMorse(object sender = null, RoutedEventArgs e = null)
         {
-
+            ContentFrame.Content = MorseLearner.Instance;
         }
 
         private void DisplayMorseTranslator(object sender = null, RoutedEventArgs e = null)
         {
-
+            ContentFrame.Content = TranslatorPage.Instance;
         }
     }
 }

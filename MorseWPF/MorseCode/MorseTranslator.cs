@@ -50,7 +50,7 @@ namespace MorseWPF.MorseCode
             string returnValue;
             if (!this.MorseDictionary.TryGetValue(character.ToLower(), out returnValue))
             {
-                return "";
+                return character;
             }
             return returnValue;
         }
@@ -63,7 +63,8 @@ namespace MorseWPF.MorseCode
         /// <returns>Returns the character</returns>
         public string GetMorseToChar(string morse)
         {
-            return this.MorseDictionary.FirstOrDefault(x => x.Value == morse).Key;
+            string returnStr = this.MorseDictionary.FirstOrDefault(x => x.Value == morse).Key;
+            return string.IsNullOrEmpty(returnStr) ? morse : returnStr;
         }
 
         /// <summary>

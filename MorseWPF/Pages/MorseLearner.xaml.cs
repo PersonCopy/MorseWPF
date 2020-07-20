@@ -20,7 +20,21 @@ namespace MorseWPF.Pages
     /// </summary>
     public partial class MorseLearner : Page
     {
-        public MorseLearner()
+        // Singleton so it doesn't get created a bunch of times
+        // by the navigation menu
+        private static MorseLearner instance = null;
+        public static MorseLearner Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new MorseLearner();
+                }
+                return instance;
+            }
+        }
+        private MorseLearner()
         {
             InitializeComponent();
         }

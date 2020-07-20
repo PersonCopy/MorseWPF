@@ -27,6 +27,6 @@
                 <Button Name="MorseTranslatorBtn" Click="DisplayMorseTranslator" Content="Morse Translator"/>
             </StackPanel>
         </StackPanel>
-        <Frame Grid.Column="1" Name="ContentFrame"/>
+        <Frame Grid.Column="1" Name="ContentFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
