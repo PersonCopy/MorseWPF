@@ -6,11 +6,27 @@
         xmlns:local="clr-namespace:MorseWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/MainStyle.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid>
-        <StackPanel Margin="50">
-            <TextBox Name="MorseTextBox"/>
-            <Button Name="MorseTranslate" Click="MorseTranslate_Click" Content="Translate"/>
-            <TextBlock Name="TxtOutputBlock"/>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer>
+            <StackPanel>
+                <Button Name="MorseTableBtn" Click="DisplayMorseTable" Content="Morse Table"/>
+                <Button Name="LearnMorseBtn" Click="DisplayLearnMorse" Content="Learn Morse"/>
+                <Button Name="MorseTranslatorBtn" Click="DisplayMorseTranslator" Content="Morse Translator"/>
+            </StackPanel>
+        </ScrollViewer>
+        <Frame Grid.Column="1" Name="ContentFrame"/>
     </Grid>
 </Window>
