@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MorseWPF.MorseCode;
 
 namespace MorseWPF.Pages
 {
@@ -20,6 +21,8 @@ namespace MorseWPF.Pages
     /// </summary>
     public partial class MorseTable : Page
     {
+        // Singleton so it doesn't get created a bunch of times
+        // by the navigation menu
         private static MorseTable instance = null;
         public static MorseTable Instance
         {
@@ -36,6 +39,27 @@ namespace MorseWPF.Pages
         private MorseTable()
         {
             InitializeComponent();
+            DisplayTable();
+        }
+
+        // displays all the content of the morse dictionary attribute
+        public void DisplayTable()
+        {
+            foreach (KeyValuePair<string, string> textMorsePair in MorseTranslator.Instance.MorseDictionary)
+            {
+                Label key = new Label
+                {
+                    Content = textMorsePair.Key,
+                    HorizontalAlignment = HorizontalAlignment.Right
+                };
+                Label value = new Label
+                {
+                    Content = textMorsePair.Value,
+                    HorizontalAlignment = HorizontalAlignment.Right
+                };
+                TranslationGrid.Children.Add(key);
+                TranslationGrid.Children.Add(value);
+            }
         }
     }
 }

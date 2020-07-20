@@ -20,13 +20,13 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer>
-            <StackPanel>
+        <StackPanel Background="LightGray">
+            <StackPanel Width="145" Margin="2">
                 <Button Name="MorseTableBtn" Click="DisplayMorseTable" Content="Morse Table"/>
-                <Button Name="LearnMorseBtn" Click="DisplayLearnMorse" Content="Learn Morse"/>
+                <Button Name="LearnMorseBtn" Click="DisplayLearnMorse" Content="Learn Morse" Margin="0 1"/>
                 <Button Name="MorseTranslatorBtn" Click="DisplayMorseTranslator" Content="Morse Translator"/>
             </StackPanel>
-        </ScrollViewer>
+        </StackPanel>
         <Frame Grid.Column="1" Name="ContentFrame"/>
     </Grid>
 </Window>

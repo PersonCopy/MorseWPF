@@ -24,7 +24,7 @@ namespace MorseWPF
         public MainWindow()
         {
             InitializeComponent();
-            DisplayMorseTable();
+            DisplayMorseTable(); // to first display the morse table on app start
         }
 
         private void DisplayMorseTable(object sender = null, RoutedEventArgs e = null)

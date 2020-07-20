@@ -15,8 +15,20 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    
+
     <Grid>
-        <Label>Hello</Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <Label Content="Morse Table" FontSize="30"/>
+            <Separator Margin="5"/>
+        </StackPanel>
+        
+        <ScrollViewer Grid.Row="1">
+            <UniformGrid Columns="2" Name="TranslationGrid"/>
+        </ScrollViewer>
     </Grid>
 </Page>
