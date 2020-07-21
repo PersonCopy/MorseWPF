@@ -49,7 +49,7 @@ namespace MorseWPF.Pages
 
         private void MakeNewWord()
         {
-            CharMorsePanel.Children.Clear();
+            ClearMorseInput();
             this.morseWord = new MorseWord();
 
             UpdateWord();
