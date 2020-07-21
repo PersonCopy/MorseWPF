@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Media;
 using MorseWPF.MorseCode;
 
 namespace MorseWPF.Pages
@@ -8,6 +9,9 @@ namespace MorseWPF.Pages
     /// </summary>
     public partial class MorseLearner : Page
     {
+        // private attribute of MorseWord so that it can be destroyed later
+        private MorseWord morseWord;
+
         // Singleton so it doesn't get created a bunch of times
         // by the navigation menu
         private static MorseLearner instance = null;
@@ -31,17 +35,40 @@ namespace MorseWPF.Pages
         private void DisplayNewWord()
         {
             CurrWordPanel.Children.Clear();
-            MorseWord morseWord = new MorseWord();
-            /*
-            foreach (char c in morseWord.SelectedWord.)
+            this.morseWord = new MorseWord();
+
+            UpdateWord(this.morseWord);
+        }
+
+        private void UpdateWord(MorseWord morseWord, string currentMorse = "")
+        {
+            morseWord.UpdateWordProgress(currentMorse);
+
+            for (int i = 0; i < morseWord.SelectedWord.Length; i++)
             {
+                SolidColorBrush statusBrush;
+                switch (morseWord.SelectedWord[i].status)
+                {
+                    case true:
+                        statusBrush = Brushes.Turquoise;
+                        break;
+                    case false:
+                        statusBrush = Brushes.Red;
+                        break;
+                    default:
+                        statusBrush = Brushes.Black;
+                        break;
+                }
+
+
                 Label label = new Label
                 {
-                    Content = c.ToString(),
-                    FontSize = 55
+                    Content = morseWord.SelectedWord[i].letter,
+                    FontSize = 55,
+                    Foreground = statusBrush
                 };
                 CurrWordPanel.Children.Add(label);
-            }*/
+            }
         }
 
         private void DotBtn_Click(object sender, System.Windows.RoutedEventArgs e)

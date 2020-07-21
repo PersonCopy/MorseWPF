@@ -14,12 +14,12 @@ namespace MorseWPF.MorseCode
 
         // word that has been randomly selected
         public LettersState[] SelectedWord;
-        private int currentIndex;
+        private int currentIndex = 0;
 
         public struct LettersState
         {
             public string letter;
-            public int status;
+            public bool? status;
         }
 
         public MorseWord()
@@ -35,16 +35,17 @@ namespace MorseWPF.MorseCode
 
             // selects a random word from the array
             Random random = new Random();
-            string word = RandWords[random.Next(RandWords.Length + 1)];
+            string word = RandWords[random.Next(RandWords.Length)];
             SelectedWord = new LettersState[word.Length];
-
+            int i = 0;
             foreach (char c in word)
             {
                 LettersState lettersState;
                 lettersState.letter = c.ToString();
-                lettersState.status = 0;
+                lettersState.status = null;
 
-                SelectedWord.Append(lettersState);
+                SelectedWord[i] = lettersState;
+                i++;
             }
         }
 
@@ -61,6 +62,11 @@ namespace MorseWPF.MorseCode
             }
         }
 
+        /// <summary>
+        /// Checks if entered morse code is correct thus far
+        /// </summary>
+        /// <param name="currMorse">Current progress of the morse input</param>
+        /// <returns>If it is correct</returns>
         private bool IsMorseCorrect(string currMorse)
         {
             LettersState character = SelectedWord[this.currentIndex];
@@ -77,10 +83,14 @@ namespace MorseWPF.MorseCode
                 }
             }
 
-
             return true;
         }
 
+        /// <summary>
+        /// Checks if the morse input is over
+        /// </summary>
+        /// <param name="currMorse">Current morse progress</param>
+        /// <returns>Wether or not it is over</returns>
         private bool IsMorseOver(string currMorse)
         {
             LettersState character = SelectedWord[this.currentIndex];
@@ -94,9 +104,23 @@ namespace MorseWPF.MorseCode
             return true;
         }
 
-        public void CheckWordProgress(string currMorse)
+        /// <summary>
+        /// Updates the status of the words character
+        /// </summary>
+        /// <param name="currMorse">Current morse code progress</param>
+        /// <returns>The current state of the word. Will return null if it has detected that the word has finished</returns>
+        public LettersState[] UpdateWordProgress(string currMorse)
         {
-
+            if (SelectedWord.Length - 1 < currentIndex)
+            {
+                return null;
+            }
+            if (IsMorseOver(currMorse))
+            {
+                this.SelectedWord[currentIndex].status = IsMorseCorrect(currMorse);
+                this.currentIndex++;
+            }
+            return SelectedWord;
         }
     }
 }
