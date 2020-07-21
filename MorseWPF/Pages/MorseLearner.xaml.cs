@@ -11,6 +11,20 @@ namespace MorseWPF.Pages
     {
         // private attribute of MorseWord so that it can be destroyed later
         private MorseWord morseWord;
+        // morse string progress
+        private string morseProgress = "";
+        private string MorseProgress
+        {
+            get
+            {
+                return this.morseProgress;
+            }
+            set
+            {
+                this.morseProgress = value;
+                UpdateWord(this.morseProgress);
+            }
+        }
 
         // Singleton so it doesn't get created a bunch of times
         // by the navigation menu
@@ -29,28 +43,39 @@ namespace MorseWPF.Pages
         private MorseLearner()
         {
             InitializeComponent();
-            DisplayNewWord();
+            MakeNewWord();
         }
 
-        private void DisplayNewWord()
+        private void MakeNewWord()
         {
-            CurrWordPanel.Children.Clear();
+            CharMorsePanel.Children.Clear();
             this.morseWord = new MorseWord();
 
-            UpdateWord(this.morseWord);
+            UpdateWord();
         }
 
-        private void UpdateWord(MorseWord morseWord, string currentMorse = "")
+        private void ClearMorseInput()
         {
-            morseWord.UpdateWordProgress(currentMorse);
+            this.morseProgress = "";
+            CharMorsePanel.Children.Clear();
+        }
 
-            for (int i = 0; i < morseWord.SelectedWord.Length; i++)
+        private bool UpdateWord(string currentMorse = "")
+        {
+            if (morseWord.UpdateWordProgress(currentMorse, this.ClearMorseInput) == null)
+            {
+                MakeNewWord();
+                return false;
+            }
+
+            CurrWordPanel.Children.Clear();
+            for (int i = 0; i < this.morseWord.SelectedWord.Length; i++)
             {
                 SolidColorBrush statusBrush;
                 switch (morseWord.SelectedWord[i].status)
                 {
                     case true:
-                        statusBrush = Brushes.Turquoise;
+                        statusBrush = Brushes.Green;
                         break;
                     case false:
                         statusBrush = Brushes.Red;
@@ -63,17 +88,28 @@ namespace MorseWPF.Pages
 
                 Label label = new Label
                 {
-                    Content = morseWord.SelectedWord[i].letter,
+                    Content = this.morseWord.SelectedWord[i].letter,
                     FontSize = 55,
                     Foreground = statusBrush
                 };
                 CurrWordPanel.Children.Add(label);
             }
+            morseWord.UpdateWordProgress(currentMorse, this.ClearMorseInput);
+
+            return true;
         }
 
         private void DotBtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            DisplayNewWord();
+            this.MorseProgress += ".";
+            CharMorsePanel.Children.Add(new Label { Content = "." });
+        }
+
+        private void DashBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.MorseProgress += "-";
+            CharMorsePanel.Children.Add(new Label { Content = "-" });
+
         }
     }
 }

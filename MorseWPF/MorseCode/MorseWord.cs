@@ -91,7 +91,7 @@ namespace MorseWPF.MorseCode
         /// </summary>
         /// <param name="currMorse">Current morse progress</param>
         /// <returns>Wether or not it is over</returns>
-        private bool IsMorseOver(string currMorse)
+        public bool IsMorseOver(string currMorse)
         {
             LettersState character = SelectedWord[this.currentIndex];
 
@@ -108,8 +108,9 @@ namespace MorseWPF.MorseCode
         /// Updates the status of the words character
         /// </summary>
         /// <param name="currMorse">Current morse code progress</param>
+        /// <param name="action">what to do when it detects that morse input has been finished</param>
         /// <returns>The current state of the word. Will return null if it has detected that the word has finished</returns>
-        public LettersState[] UpdateWordProgress(string currMorse)
+        public LettersState[] UpdateWordProgress(string currMorse, Action action)
         {
             if (SelectedWord.Length - 1 < currentIndex)
             {
@@ -119,6 +120,7 @@ namespace MorseWPF.MorseCode
             {
                 this.SelectedWord[currentIndex].status = IsMorseCorrect(currMorse);
                 this.currentIndex++;
+                action.Invoke();
             }
             return SelectedWord;
         }
