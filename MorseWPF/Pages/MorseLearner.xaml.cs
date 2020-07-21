@@ -97,7 +97,6 @@ namespace MorseWPF.Pages
                         break;
                 }
 
-
                 Label label = new Label
                 {
                     Content = this.morseWord.SelectedWord[i].letter,

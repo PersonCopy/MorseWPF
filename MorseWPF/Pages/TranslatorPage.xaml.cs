@@ -42,6 +42,9 @@ namespace MorseWPF.Pages
             InitializeComponent();
         }
 
+
+        // Button click methods
+
         private void ToMorseBtn_Click(object sender, RoutedEventArgs e)
         {
             isToMorse = true;

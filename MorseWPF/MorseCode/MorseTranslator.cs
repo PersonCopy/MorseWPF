@@ -55,7 +55,6 @@ namespace MorseWPF.MorseCode
             return returnValue;
         }
 
-
         /// <summary>
         /// Turns a morse character into a real character
         /// </summary>

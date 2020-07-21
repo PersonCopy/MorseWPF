@@ -30,9 +30,6 @@ namespace MorseWPF.MorseCode
                 InitRandWords();
             }
 
-            // Initialize
-            
-
             // selects a random word from the array
             Random random = new Random();
             string word = RandWords[random.Next(RandWords.Length)];
