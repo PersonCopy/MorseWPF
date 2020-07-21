@@ -23,6 +23,7 @@ namespace MorseWPF.Pages
             {
                 this.morseProgress = value;
                 UpdateWord(this.morseProgress);
+                morseWord.UpdateWordProgress(this.morseProgress, this.ClearMorseInput);
             }
         }
 
@@ -94,22 +95,20 @@ namespace MorseWPF.Pages
                 };
                 CurrWordPanel.Children.Add(label);
             }
-            morseWord.UpdateWordProgress(currentMorse, this.ClearMorseInput);
 
             return true;
         }
 
         private void DotBtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.MorseProgress += ".";
             CharMorsePanel.Children.Add(new Label { Content = "." });
+            this.MorseProgress += ".";
         }
 
         private void DashBtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.MorseProgress += "-";
             CharMorsePanel.Children.Add(new Label { Content = "-" });
-
+            this.MorseProgress += "-";
         }
     }
 }
