@@ -13,18 +13,13 @@ namespace MorseWPF.Pages
         private MorseWord morseWord;
         // morse string progress
         private string morseProgress = "";
-        private string MorseProgress
+
+        // Setter method for morseProgress
+        private void SetMorseProgress(string value)
         {
-            get
-            {
-                return this.morseProgress;
-            }
-            set
-            {
-                this.morseProgress = value;
-                UpdateWord(this.morseProgress);
-                morseWord.UpdateWordProgress(this.morseProgress, this.ClearMorseInput);
-            }
+            this.morseProgress = value;
+            UpdateWord();
+            morseWord.UpdateWordProgress(this.morseProgress, this.ClearMorseInput); //rechecks word progress after update
         }
 
         // Singleton so it doesn't get created a bunch of times
@@ -41,12 +36,18 @@ namespace MorseWPF.Pages
                 return instance;
             }
         }
+
+        // private constructor
         private MorseLearner()
         {
             InitializeComponent();
             MakeNewWord();
         }
 
+
+        /// <summary>
+        /// Method that will generate and display a new word
+        /// </summary>
         private void MakeNewWord()
         {
             ClearMorseInput();
@@ -55,19 +56,29 @@ namespace MorseWPF.Pages
             UpdateWord();
         }
 
+        /// <summary>
+        /// Clears morse input
+        /// </summary>
         private void ClearMorseInput()
         {
             this.morseProgress = "";
             CharMorsePanel.Children.Clear();
         }
 
-        private bool UpdateWord(string currentMorse = "")
+        /// <summary>
+        /// Updates the word to display correct, wrong or generate a new word
+        /// </summary>
+        /// <returns>False if word is finished. Made to avoid unnesseairy else statement</returns>
+        private bool UpdateWord()
         {
-            if (morseWord.UpdateWordProgress(currentMorse, this.ClearMorseInput) == null)
+            // checks if word has been completed
+            if (morseWord.UpdateWordProgress(this.morseProgress, this.ClearMorseInput) == null)
             {
                 MakeNewWord();
                 return false;
             }
+
+            // redraws the word panel with colors
 
             CurrWordPanel.Children.Clear();
             for (int i = 0; i < this.morseWord.SelectedWord.Length; i++)
@@ -99,16 +110,19 @@ namespace MorseWPF.Pages
             return true;
         }
 
+
+        // button click methods
+
         private void DotBtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             CharMorsePanel.Children.Add(new Label { Content = "." });
-            this.MorseProgress += ".";
+            this.SetMorseProgress(this.morseProgress + ".");
         }
 
         private void DashBtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             CharMorsePanel.Children.Add(new Label { Content = "-" });
-            this.MorseProgress += "-";
+            this.SetMorseProgress(this.morseProgress + "-");
         }
     }
 }
