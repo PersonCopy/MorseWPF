@@ -19,7 +19,6 @@ namespace MorseWPF.Pages
         {
             this.morseProgress = value;
             UpdateWord();
-            morseWord.UpdateWordProgress(this.morseProgress, this.ClearMorseInput); //rechecks word progress after update
         }
 
         // Singleton so it doesn't get created a bunch of times
