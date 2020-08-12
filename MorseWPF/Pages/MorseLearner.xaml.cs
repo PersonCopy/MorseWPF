@@ -20,7 +20,6 @@ namespace MorseWPF.Pages
         {
             this.morseProgress = value;
             UpdateWord();
-            Keyboard.Focus(this.DotBtn);
         }
 
         // Singleton so it doesn't get created a bunch of times
@@ -43,6 +42,7 @@ namespace MorseWPF.Pages
         {
             InitializeComponent();
             MakeNewWord();
+            //Keyboard.Focus(this.DotBtn);
         }
 
 
