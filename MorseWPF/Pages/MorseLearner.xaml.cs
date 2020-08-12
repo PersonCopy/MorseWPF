@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Media;
 using MorseWPF.MorseCode;
+using System.Windows.Input;
 
 namespace MorseWPF.Pages
 {
@@ -19,6 +20,7 @@ namespace MorseWPF.Pages
         {
             this.morseProgress = value;
             UpdateWord();
+            Keyboard.Focus(this.DotBtn);
         }
 
         // Singleton so it doesn't get created a bunch of times
@@ -121,6 +123,20 @@ namespace MorseWPF.Pages
         {
             CharMorsePanel.Children.Add(new Label { Content = "-" });
             this.SetMorseProgress(this.morseProgress + "-");
+        }
+
+        // key pressed method
+
+        private void Buttons_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.OemPeriod)
+            {
+                DotBtn_Click(null, null);
+            }
+            else if (e.Key == Key.OemMinus)
+            {
+                DashBtn_Click(null, null);
+            }
         }
     }
 }

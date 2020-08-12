@@ -15,7 +15,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -30,8 +30,8 @@
             <WrapPanel Name="CurrWordPanel" HorizontalAlignment="Center" Height="150"/>
             <WrapPanel Name="CharMorsePanel" HorizontalAlignment="Center" Height="150"/>
             <UniformGrid Columns="2" Margin="5">
-                <Button Name="DotBtn" Content="." FontSize="30" Height="45" Margin="1" Click="DotBtn_Click"/>
-                <Button Name="DashBtn" Content="-" FontSize="30" Height="45" Margin="1" Click="DashBtn_Click"/>
+                <Button Name="DotBtn" Content="." FontSize="30" Height="45" Margin="1" Click="DotBtn_Click" KeyDown="Buttons_KeyDown"/>
+                <Button Name="DashBtn" Content="-" FontSize="30" Height="45" Margin="1" Click="DashBtn_Click" KeyDown="Buttons_KeyDown"/>
             </UniformGrid>
         </StackPanel>
     </Grid>
