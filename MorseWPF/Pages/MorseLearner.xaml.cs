@@ -2,6 +2,7 @@
 using System.Windows.Media;
 using MorseWPF.MorseCode;
 using System.Windows.Input;
+using System.Windows;
 
 namespace MorseWPF.Pages
 {
@@ -42,7 +43,6 @@ namespace MorseWPF.Pages
         {
             InitializeComponent();
             MakeNewWord();
-            //Keyboard.Focus(this.DotBtn);
         }
 
 
