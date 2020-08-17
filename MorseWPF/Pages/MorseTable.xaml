@@ -28,7 +28,7 @@
         </StackPanel>
         
         <ScrollViewer Grid.Row="1">
-            <UniformGrid Columns="2" Name="TranslationGrid"/>
+            <UniformGrid Columns="4" Name="TranslationGrid"/>
         </ScrollViewer>
     </Grid>
 </Page>

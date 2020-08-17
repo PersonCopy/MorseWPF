@@ -3,6 +3,7 @@ using System.Windows.Media;
 using MorseWPF.MorseCode;
 using System.Windows.Input;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 
 namespace MorseWPF.Pages
 {
@@ -104,7 +105,26 @@ namespace MorseWPF.Pages
                     FontSize = 55,
                     Foreground = statusBrush
                 };
-                CurrWordPanel.Children.Add(label);
+
+                UniformGrid uniformGrid = new UniformGrid
+                {
+                    Rows = 2
+                };
+
+                uniformGrid.Children.Add(label);
+
+                if (statusBrush == Brushes.Red)
+                {
+                    Label morseLabel = new Label
+                    {
+                        Content = MorseTranslator.Instance.GetCharToMorse(this.morseWord.SelectedWord[i].letter),
+                        FontSize = 20
+                    };
+
+                    uniformGrid.Children.Add(morseLabel);
+                }
+
+                CurrWordPanel.Children.Add(uniformGrid);
             }
 
             return true;
