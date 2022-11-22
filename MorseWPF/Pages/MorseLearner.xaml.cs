@@ -17,6 +17,9 @@ namespace MorseWPF.Pages
         // morse string progress
         private string morseProgress = "";
 
+        //
+        private Button StartBtn;
+
         // Setter method for morseProgress
         private void SetMorseProgress(string value)
         {
@@ -44,6 +47,17 @@ namespace MorseWPF.Pages
         {
             InitializeComponent();
             MakeNewWord();
+
+            // Innitialize start button
+            this.StartBtn = new Button()
+            {
+                Content = "Start!",
+                FontSize = 30,
+                Height = 45
+            };
+            this.StartBtn.Click += (s, e) => { StartBtn_Click(s, e); };
+
+            CharMorsePanel.Children.Add(this.StartBtn);
         }
 
 
@@ -52,6 +66,8 @@ namespace MorseWPF.Pages
         /// </summary>
         private void MakeNewWord()
         {
+            
+
             ClearMorseInput();
             this.morseWord = new MorseWord();
 
@@ -146,8 +162,7 @@ namespace MorseWPF.Pages
         }
 
         // key pressed method
-
-        private void Buttons_KeyDown(object sender, KeyEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.OemPeriod)
             {
@@ -157,6 +172,13 @@ namespace MorseWPF.Pages
             {
                 DashBtn_Click(null, null);
             }
+        }
+
+        private void StartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            StartBtn.Visibility = Visibility.Hidden;
+            DashBtn.Visibility = Visibility.Visible;
+            DotBtn.Visibility = Visibility.Visible;
         }
     }
 }
