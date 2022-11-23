@@ -20,6 +20,9 @@ namespace MorseWPF.Pages
         // Button for starting the thing
         private Button StartBtn;
 
+        // Label for tip, informing user of keyboard input
+        private Label TipLabel;
+
         // Setter method for morseProgress
         private void SetMorseProgress(string value)
         {
@@ -38,6 +41,7 @@ namespace MorseWPF.Pages
                 {
                     instance = new MorseLearner();
                 }
+                instance.DashBtn.Focus();
                 return instance;
             }
         }
@@ -53,12 +57,22 @@ namespace MorseWPF.Pages
             {
                 Content = "Start!",
                 FontSize = 30,
-                Height = 45
-            };
+                Height = 50,
+                Width = 100
+        };
             this.StartBtn.Click += (s, e) => { StartBtn_Click(s, e); };
+
+            // Init TipLabel
+            this.TipLabel = new Label()
+            {
+                Content = "Use \".\" or \"-\" to enter dots and dashes"
+            };
 
             // Add start button to WrapPanel
             CharMorsePanel.Children.Add(this.StartBtn);
+
+            // Add TipLabel to TipGrid
+            TipGrid.Children.Add(this.TipLabel);
         }
 
 
@@ -178,7 +192,12 @@ namespace MorseWPF.Pages
 
         private void StartBtn_Click(object sender, RoutedEventArgs e)
         {
+            // Hidden elements
             StartBtn.Visibility = Visibility.Hidden;
+            TipLabel.Visibility = Visibility.Collapsed;
+            TipGrid.Visibility = Visibility.Collapsed;
+
+            // Visible elements
             DashBtn.Visibility = Visibility.Visible;
             DotBtn.Visibility = Visibility.Visible;
 
