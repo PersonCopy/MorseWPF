@@ -17,7 +17,7 @@ namespace MorseWPF.Pages
         // morse string progress
         private string morseProgress = "";
 
-        //
+        // Button for starting the thing
         private Button StartBtn;
 
         // Setter method for morseProgress
@@ -57,6 +57,7 @@ namespace MorseWPF.Pages
             };
             this.StartBtn.Click += (s, e) => { StartBtn_Click(s, e); };
 
+            // Add start button to WrapPanel
             CharMorsePanel.Children.Add(this.StartBtn);
         }
 
@@ -162,8 +163,9 @@ namespace MorseWPF.Pages
         }
 
         // key pressed method
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        private void Page_KeyDown(object sender, KeyEventArgs e)
         {
+            //MessageBox.Show("Key down");
             if (e.Key == Key.OemPeriod)
             {
                 DotBtn_Click(null, null);
@@ -179,6 +181,9 @@ namespace MorseWPF.Pages
             StartBtn.Visibility = Visibility.Hidden;
             DashBtn.Visibility = Visibility.Visible;
             DotBtn.Visibility = Visibility.Visible;
+
+            // Sets focus on button in page, enabling key strokes to register
+            this.DashBtn.Focus();
         }
     }
 }
