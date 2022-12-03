@@ -81,6 +81,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\TranslatorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,6 +102,9 @@
     </Compile>
     <Compile Include="Pages\MorseTable.xaml.cs">
       <DependentUpon>MorseTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\TranslatorPage.xaml.cs">
       <DependentUpon>TranslatorPage.xaml</DependentUpon>
@@ -139,6 +146,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="MorseWPF.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MorseCode\MorseData\Settings.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

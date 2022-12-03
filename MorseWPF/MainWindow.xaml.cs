@@ -28,5 +28,10 @@ namespace MorseWPF
         {
             ContentFrame.Content = TranslatorPage.Instance;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ContentFrame.Content = SettingsPage.Instance;
+        }
     }
 }

@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MorseWPF.MorseCode
 {
@@ -11,6 +15,9 @@ namespace MorseWPF.MorseCode
     {
         // static array of random words
         public static string[] RandWords = null;
+
+        // static word list location
+        public static string WordListLocation;
 
         // word that has been randomly selected
         public LettersState[] SelectedWord;
@@ -52,6 +59,46 @@ namespace MorseWPF.MorseCode
         /// string array
         /// </summary>
         public static void InitRandWords()
+        {
+            RefreshWordList();
+        }
+
+        /// <summary>
+        /// Method for refreshing words from the word list
+        /// </summary>
+        public static void RefreshWordList()
+        {
+            using (StreamReader r = new StreamReader(@"..\..\MorseCode\MorseData\settings.txt"))
+            {
+                WordListLocation = r.ReadToEnd();
+            }
+
+
+            if (string.IsNullOrEmpty(WordListLocation))
+            {
+                UseDefaultWords();
+            }
+            else
+            {
+                try
+                {
+                    RandWords = File.ReadAllText(WordListLocation).Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(
+                        "Words list is not in correct format!\nPlease make sure to separate words by ','\n\n"
+                        + e.InnerException
+                        );
+                    UseDefaultWords(); 
+                }
+            }   
+        }
+
+        /// <summary>
+        /// Method for setting game settings back to default words list
+        /// </summary>
+        private static void UseDefaultWords()
         {
             using (StreamReader r = new StreamReader(@"..\..\MorseCode\MorseData\wordsList.txt"))
             {

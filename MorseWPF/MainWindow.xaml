@@ -20,13 +20,25 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Background="LightGray" Grid.RowSpan="2">
             <StackPanel Width="145" Margin="2">
                 <Button Name="MorseTableBtn" Click="DisplayMorseTable" Content="Morse Table"/>
                 <Button Name="LearnMorseBtn" Click="DisplayLearnMorse" Content="Learn Morse" Margin="0 1"/>
                 <Button Name="MorseTranslatorBtn" Click="DisplayMorseTranslator" Content="Morse Translator"/>
             </StackPanel>
+            
         </StackPanel>
-        <Frame Grid.Column="1" Name="ContentFrame" NavigationUIVisibility="Hidden"/>
+        <Button Height="40" Width="40" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="Button_Click" Margin="4">
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="Icons/Settings.png"/>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Frame Grid.Column="1" Name="ContentFrame" NavigationUIVisibility="Hidden" Grid.RowSpan="2"/>
     </Grid>
 </Window>

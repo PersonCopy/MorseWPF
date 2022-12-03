@@ -1,0 +1,1 @@
+C:\Users\bzoro\Documents\dev\personal\MorseWPF\MorseWPF\MorseCode\MorseData\wordsList.txt
