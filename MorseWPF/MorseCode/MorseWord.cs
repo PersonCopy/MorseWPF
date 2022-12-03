@@ -104,6 +104,7 @@ namespace MorseWPF.MorseCode
             {
                 RandWords = r.ReadToEnd().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
             }
+            WordListLocation = @"..\..\MorseCode\MorseData\wordsList.txt";
         }
 
         /// <summary>
